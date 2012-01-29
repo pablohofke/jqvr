@@ -1,12 +1,23 @@
+require 'jqvr/validator_map'
+
 module Jqvr
   
-  autoload :DefaultValidatorsMaps,  'jqvr/default_validators_maps'
-  
+  autoload :ValidatorMap, 'jqvr/validator_map'
   
   # Mapeia os validators com as rules do jqv
-  # map_validator[:presence]="required"
-  mattr_accessor :map_validator
-  @@map_validator={}
+  # map_validator[:presence]="required:true"
+  mattr_reader :mapped_validators
+  # @@mapped_validators=[]
+  
+  def map_validator(kind,rule,option=nil)
+    @@mapped_validators=[] if @@mapped_validators.blank?
+    vm=ValidatorMap.new kind, rule, option
+    @@mapped_validators << vm
+  end
+  
+  def teste
+    "sucesso"
+  end
   
   # Permite configurar o Jqvr no initialize
   def self.setup
