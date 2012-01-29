@@ -9,7 +9,5 @@ module Jqvr
       @option=option if option
     end
     
-    
-    
   end
 end
