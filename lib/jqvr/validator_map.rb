@@ -1,4 +1,5 @@
 module Jqvr
+  # Representa um validator mapeado
   class ValidatorMap
   
     attr_accessor :kind, :rule, :option
