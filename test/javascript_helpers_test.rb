@@ -1,8 +1,11 @@
 # encoding: utf-8
 
 require 'test_helper'
+require 'jqvr/javascript_helpers'
 
 class JavascriptHelpersTest < ActiveSupport::TestCase
+  
+  include Jqvr::JavascriptHelpers
   
   @attribute="attribute"
   @message="the message"
