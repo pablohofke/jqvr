@@ -7,8 +7,12 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
   
   include Jqvr::JavascriptHelpers
   
-  @attribute="attribute"
-  @message="the message"
+  def setup
+    @attribute="the_attribute"
+    @message="the message"
+    @method_name=@attribute
+    @object_name='foo'
+  end
   
   def rule_output(name,param="true")
     "jQuery.('[name=\"foo[#{@attribute}]\"]').rules('add',{#{name}:#{param},messages:{#{name}:'#{@message}'}});\n"
@@ -28,10 +32,10 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     assert_equal(rule_output("required"), 
                  rule_to_check(:acceptance))
     # confirmation
-    assert_equal(rule_output("equalTo","attribute_confirmation"),
+    assert_equal(rule_output("equalTo","#{@attribute}_confirmation"),
                  rule_to_check(:confirmation))
     # exclusion
-    assert_equal(new_method_rule_output("exclusion_in","function(value){return jQuery.inArray(value,['Alto','Médio','Baixo'])==-1}"),
+    assert_equal(rule_output("exclusion_in"),
                  rule_to_check(:exclusion, :in => ['Alto','Médio','Baixo']))
     # format with
     assert_equal(new_method_rule_output("format_with","function(value){if(value!=""){return value.match(/[A-Z]/)}else{return true}}"),
