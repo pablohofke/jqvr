@@ -24,10 +24,13 @@ module    JavascriptHelpers
                     end
                   end).first
       # debugger if kind == :acceptance
+      # TODO Dá para fazer esses ifs menos DRY?
       if validator
         if validator.rule.match(/function/)
           if validator.option
             rule_output "#{rule_name(validator)}:#{sanitize_option option[validator.option]}", validator
+          else
+            rule_output "#{rule_name(validator)}:true", validator
           end
         else
           if validator.option

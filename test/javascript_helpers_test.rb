@@ -62,7 +62,7 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     assert_equal(expected_rule("numericality"),
                  rule_to_check(:numericality))
     # numericality only_integer
-    assert_equal(expected_rule "digits",
+    assert_equal(expected_rule("digits"),
                  rule_to_check(:numericality, :only_integer => true))
     # numericality greater_than
     assert_equal(expected_rule("numericalityGreaterThan",5),
