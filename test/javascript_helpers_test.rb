@@ -40,7 +40,6 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     # format with
     assert_equal(expected_rule("formatWith","/[A-Z]/"),
                  rule_to_check(:format,:with => /[A-Z]/))
-    # TODO Resolver este que não está passando
     # format without
     assert_equal(expected_rule("formatWithout","/[A-Z]/"),
                  rule_to_check(:format, :without => /[A-Z]/))
