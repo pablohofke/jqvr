@@ -28,16 +28,16 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
   end
   
   test "add_rule deve gerar as rules padrões do rails" do
-    # TODO Resolver este que não está passando
     # acceptance
     assert_equal(expected_rule("required"), 
                  rule_to_check(:acceptance))
     # confirmation
     assert_equal(expected_rule("equalTo","#{@attribute}_confirmation"),
                  rule_to_check(:confirmation))
+    # TODO Resolver este que não está passando
     # exclusion
-    assert_equal(expected_rule("exclusionIn","['Alto','Médio','Baixo']"),
-                 rule_to_check(:exclusion, :in => ['Alto','Médio','Baixo']))
+    assert_equal(expected_rule("exclusionIn","[\"Alto\", \"Médio\", \"Baixo\"]"),
+                 rule_to_check(:exclusion, :in => ["Alto","Médio","Baixo"]))
     # format with
     assert_equal(new_method_rule_output("formatWith","function(value){if(value!=""){return value.match(/[A-Z]/)}else{return true}}"),
                  rule_to_check(:format,:with => /[A-Z]/))
