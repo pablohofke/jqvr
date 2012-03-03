@@ -5,7 +5,7 @@ module Jqvr
     # TODO Usando esses como base para criar add_rule e os testes
     MappedValidators.add :acceptance, "required:true" #ok
     MappedValidators.add :confirmation, "equalTo:%{attribute}_confirmation" #ok
-    MappedValidators.add :exclusion, "function(value){return jQuery.inArray(value,options[:in])==-1}" #ok
+    MappedValidators.add :exclusion, "function(value){return jQuery.inArray(value,element,params)==-1}", :in #ok
     MappedValidators.add :format, "function(value){if(value!=""){return value.match(%{options[:with]})}else{return true}}" #ok
     MappedValidators.add :format, "function(value){if(value!=""){return !value.match(%{options[:without]})}else{return true}}" #ok
     MappedValidators.add :inclusion, "function(value){if(value!=""){return jQuery.inArray(value,%{options[:in]})!=-1}else{return true}}" #ok
