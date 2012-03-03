@@ -27,7 +27,7 @@ module    JavascriptHelpers
       if validator
         if validator.rule.match(/function/)
           if validator.option
-            rule_output "#{rule_name(validator)}:#{option[validator.option]}", validator
+            rule_output "#{rule_name(validator)}:#{sanitize_option option[validator.option]}", validator
           end
         else
           rule_output(sanitize_rule(validator, attribute),validator)
@@ -44,7 +44,7 @@ module    JavascriptHelpers
     def rule_name(validator)
       # debugger
       if validator.rule.match(/function/)
-        output= validator.kind.to_s.downcase + validator.option.to_s.camelize # "#{validator.kind.to_s}_#{validator.option.to_s}"
+        output= validator.kind.to_s.downcase + validator.option.to_s.camelize
       else
         output=validator.rule.match(/\w*/)
       end
@@ -55,6 +55,14 @@ module    JavascriptHelpers
       output=validator.rule
       if output.include?("%{attribute}")
         output.gsub! /%{attribute}/,attribute.to_s
+      end
+      output
+    end
+    
+    def sanitize_option(option)
+      output=option
+      if option.is_a?(Regexp)
+        output="/#{option.source}/"
       end
       output
     end
