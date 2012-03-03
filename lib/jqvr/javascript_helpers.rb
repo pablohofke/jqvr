@@ -16,22 +16,36 @@ module    JavascriptHelpers
     def add_rule(kind,attribute,message,option=nil)
       # debugger if kind == :confirmation
       validators=Jqvr::MappedValidators.all
-      validator = validators.select{|v| v.kind == kind && v.option == option}.first
-      # debugger if kind == :confirmation
+      validator = (validators.select do |v| 
+                    if option
+                      v.kind == kind && v.option == option.keys.first
+                    else
+                      v.kind == kind
+                    end
+                  end).first
+      # debugger if kind == :acceptance
       if validator
-        "jQuery.('[name=\"#{tag_name}\"]').rules('add',{#{sanitize_rule validator, attribute},messages:{#{rule_name validator}:'#{@message}'}});\n"
+        if validator.rule.match(/function/)
+          if validator.option
+            rule_output "#{rule_name(validator)}:#{validator.option}", validator
+          end
+        else
+          rule_output(sanitize_rule(validator, attribute),validator)
+        end
       end
     end
       
     private
 
+    def rule_output(rule_and_param,validator)
+      "jQuery.('[name=\"#{tag_name}\"]').rules('add',{#{rule_and_param},messages:{#{rule_name validator}:'#{@message}'}});\n"
+      # "jQuery.('[name=\"foo[#{@attribute}]\"]').rules('add',{#{name}:#{param},messages:{#{name}:'#{@message}'}});\n"
+    end
+
     def rule_name(validator)
       # debugger
       if validator.rule.match(/function/)
-        output="#{validator.kind.to_s}"
-        validator.options.each do |o|
-          output<< "_#{o.to_s}"
-        end
+        output="#{validator.kind.to_s}_#{validator.option.to_s}"
       else
         output=validator.rule.match(/\w*/)
       end
@@ -45,6 +59,7 @@ module    JavascriptHelpers
       end
       output
     end
+    
     # Totalmente copiado de actionpack/lib/action_view/helpers/form_helper.rb, pois lá o método é private
     def tag_name
       "#{@object_name}[#{sanitized_method_name}]"
