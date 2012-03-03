@@ -7,6 +7,7 @@ module Jqvr
     # MappedValidators.add :presence,"required:true"
     # MappedValidators.add :numericality, "digits:true",:only_integer
     # MappedValidators.add :numericality, "min:%{options[:greater_than_or_equal_to]}"
+    # TODO refatorar option para virar option_key ou option_keys
     def self.add(kind,rule,option=nil)
       @@all=[] if @@all.blank?
       option=extract_rule_option rule unless option
