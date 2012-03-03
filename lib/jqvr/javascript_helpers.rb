@@ -30,7 +30,11 @@ module    JavascriptHelpers
             rule_output "#{rule_name(validator)}:#{sanitize_option option[validator.option]}", validator
           end
         else
-          rule_output(sanitize_rule(validator, attribute),validator)
+          if validator.option
+            rule_output "#{rule_name(validator)}:#{sanitize_option option[validator.option]}",validator
+          else
+            rule_output(sanitize_rule(validator, attribute),validator)
+          end
         end
       end
     end
