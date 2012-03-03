@@ -27,7 +27,7 @@ module    JavascriptHelpers
       if validator
         if validator.rule.match(/function/)
           if validator.option
-            rule_output "#{rule_name(validator)}:#{validator.option}", validator
+            rule_output "#{rule_name(validator)}:#{option[validator.option]}", validator
           end
         else
           rule_output(sanitize_rule(validator, attribute),validator)
@@ -39,13 +39,12 @@ module    JavascriptHelpers
 
     def rule_output(rule_and_param,validator)
       "jQuery.('[name=\"#{tag_name}\"]').rules('add',{#{rule_and_param},messages:{#{rule_name validator}:'#{@message}'}});\n"
-      # "jQuery.('[name=\"foo[#{@attribute}]\"]').rules('add',{#{name}:#{param},messages:{#{name}:'#{@message}'}});\n"
     end
 
     def rule_name(validator)
       # debugger
       if validator.rule.match(/function/)
-        output="#{validator.kind.to_s}_#{validator.option.to_s}"
+        output= validator.kind.to_s.downcase + validator.option.to_s.camelize # "#{validator.kind.to_s}_#{validator.option.to_s}"
       else
         output=validator.rule.match(/\w*/)
       end
