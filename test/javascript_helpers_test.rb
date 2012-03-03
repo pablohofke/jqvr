@@ -65,8 +65,8 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     assert_equal(expected_rule("digits"),
                  rule_to_check(:numericality, :only_integer => true))
     # numericality greater_than
-    assert_equal(expected_rule("numericalityGreaterThan",5),
-                 rule_to_check(:numericality, :greater_than => 5))
+    assert_equal(expected_rule("numericalityGreaterThen",5),
+                 rule_to_check(:numericality,:greater_then => 5))
     # numericality greater_than_or_equal_to
     assert_equal(expected_rule("min",5),
                  rule_to_check(:numericality, :greater_than_or_equal_to => 5))    
@@ -86,7 +86,7 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     assert_equal(expected_rule("numericalityEven",5),
                  rule_to_check(:numericality, :even => 5))
     # presence
-    assert_equal(expected_rule "required", 
+    assert_equal(expected_rule("required"), 
                  rule_to_check(:presence))        
   end
   
