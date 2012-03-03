@@ -67,6 +67,8 @@ module    JavascriptHelpers
       output=option
       if option.is_a?(Regexp)
         output="/#{option.source}/"
+      elsif option.is_a?(Range)
+        output="[#{option.first},#{option.last}]"
       end
       output
     end
