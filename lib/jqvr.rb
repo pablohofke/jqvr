@@ -1,5 +1,6 @@
 # require 'action_view'
 require 'jqvr/form_builder'
+require 'jqvr/engine' if defined?(Rails)
 
 module Jqvr
   
