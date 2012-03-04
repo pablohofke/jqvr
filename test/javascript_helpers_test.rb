@@ -18,14 +18,14 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     "jQuery.('[name=\"foo[#{@attribute}]\"]').rules('add',{#{name}:#{param},messages:{#{name}:'#{@message}'}});\n"
   end
   
-  def new_method_rule_output(name,function,param="true")
+  def expected_method(name,function)
     "jQuery.validator.addMethod('#{name}',#{function});\n" +
-    expected_rule(name)
   end
   
   def rule_to_check(name,params=nil)
     add_rule name, @attribute, @message, params
   end
+  
   
   test "add_rule deve gerar as rules padrões do rails" do
     # acceptance
@@ -90,6 +90,19 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
                  rule_to_check(:presence))        
   end
   
-  
+  test "add_method deve adicionar os métodos quando não existem no validator" do
+    assert_equal(expected_method("exclusionIn","function(value){return jQuery.inArray(value,element,params)==-1}"),
+                 add_method(:exclusion,:in))
+
+    assert_equal(expected_method("exclusionIn","function(value){return jQuery.inArray(value,element,params)==-1}"),
+                 add_method(:exclusion,:in))
+
+    assert_equal(expected_method("exclusionIn","function(value){return jQuery.inArray(value,element,params)==-1}"),
+                 add_method(:exclusion,:in))
+
+    assert_equal(expected_method("exclusionIn","function(value){return jQuery.inArray(value,element,params)==-1}"),
+                 add_method(:exclusion,:in))
+                 
+  end
   
 end
