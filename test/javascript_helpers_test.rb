@@ -18,10 +18,6 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     "jQuery.('[name=\"foo[#{@attribute}]\"]').rules('add',{#{name}:#{param},messages:{#{name}:'#{@message}'}});\n"
   end
   
-  def expected_method(name,function)
-    "jQuery.validator.addMethod('#{name}',#{function});\n" +
-  end
-  
   def rule_to_check(name,params=nil)
     add_rule name, @attribute, @message, params
   end
@@ -65,8 +61,8 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     assert_equal(expected_rule("digits"),
                  rule_to_check(:numericality, :only_integer => true))
     # numericality greater_than
-    assert_equal(expected_rule("numericalityGreaterThen",5),
-                 rule_to_check(:numericality,:greater_then => 5))
+    assert_equal(expected_rule("numericalityGreaterThan",5),
+                 rule_to_check(:numericality,:greater_than => 5))
     # numericality greater_than_or_equal_to
     assert_equal(expected_rule("min",5),
                  rule_to_check(:numericality, :greater_than_or_equal_to => 5))    
@@ -89,20 +85,6 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     assert_equal(expected_rule("required"), 
                  rule_to_check(:presence))        
   end
-  
-  test "add_method deve adicionar os métodos quando não existem no validator" do
-    assert_equal(expected_method("exclusionIn","function(value){return jQuery.inArray(value,element,params)==-1}"),
-                 add_method(:exclusion,:in))
 
-    assert_equal(expected_method("exclusionIn","function(value){return jQuery.inArray(value,element,params)==-1}"),
-                 add_method(:exclusion,:in))
-
-    assert_equal(expected_method("exclusionIn","function(value){return jQuery.inArray(value,element,params)==-1}"),
-                 add_method(:exclusion,:in))
-
-    assert_equal(expected_method("exclusionIn","function(value){return jQuery.inArray(value,element,params)==-1}"),
-                 add_method(:exclusion,:in))
-                 
-  end
   
 end
