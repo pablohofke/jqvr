@@ -30,8 +30,8 @@ jQuery.validator.addMethod("numericality", (value,element,params) ->
   else
     true
 )
-# numericality greater_then
-jQuery.validator.addMethod("numericalityGreaterThen", (value,element,params) ->
+# numericality greater_than
+jQuery.validator.addMethod("numericalityGreaterThan", (value,element,params) ->
   if value isnt ""
     value > param
   else
@@ -45,7 +45,7 @@ jQuery.validator.addMethod("numericalityEqualTo", (value,element,params) ->
     true
 )
 # numericality :less_than 
-jQuery.validator.addMethod("numericalityLessThen", (value,element,params) ->
+jQuery.validator.addMethod("numericalityLessThan", (value,element,params) ->
   if value isnt ""
     value < param
   else
@@ -62,16 +62,6 @@ jQuery.validator.addMethod("numericalityOdd", (value,element,params) ->
 jQuery.validator.addMethod("numericalityEven", (value,element,params) ->
   if value isnt ""
     value % 2 is 0
-  else
-    true
-)
-
-
-
-
-jQuery.validator.addMethod("length_is", (value,element,params) ->
-  if value isnt ""
-    value.length==params
   else
     true
 )
