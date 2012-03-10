@@ -1,3 +1,5 @@
+require 'jqvr/validator_map'
+
 module Jqvr
   module MappedValidators
     
