@@ -7,6 +7,10 @@ class MappedValidatorsTest < ActiveSupport::TestCase
 
   include Jqvr
   
+  def setup
+    MappedValidators.all.clear
+  end
+  
   # add
   test "add deve adicionar os validators" do
     MappedValidators.add :presence, "required:true"
@@ -16,7 +20,6 @@ class MappedValidatorsTest < ActiveSupport::TestCase
   end
   
   test "add deve passar a option quando explícita" do
-    MappedValidators.all.clear
     MappedValidators.add :numericality, "digits:true",:only_integer
     map=MappedValidators.all.first
     assert_equal :numericality, map.kind
@@ -25,7 +28,6 @@ class MappedValidatorsTest < ActiveSupport::TestCase
   end
   
   test "add deve converter as options que estão na rule para options explícitas" do
-    MappedValidators.all.clear
     MappedValidators.add :length, "minlength:%{options[:minimum]}"
     map=MappedValidators.all.first
     assert_equal :length, map.kind
