@@ -3,12 +3,12 @@ require 'jqvr/javascript_helpers'
 module Jqvr
   class ActionView::Helpers::FormBuilder
     def jqvr
-      include Jqvr::Javascript::Helpers
+      # include Jqvr::JavascriptHelpers
       # TODO Fazer primeiro as rules, sem colocar no javascript ainda para poder conferir o resultado
       @object.class.validators.each do |v|
-        v.map(&:attributes).first.each do |a|
+        v.attributes.each do |a|
           # TODO terminar mensagem
-          add_rule v.map(&:kind).first, a, "the message"
+          add_rule v.kind, a, "the message"
         end
       end
     end
