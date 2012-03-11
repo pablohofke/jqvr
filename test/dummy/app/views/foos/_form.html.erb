@@ -14,9 +14,90 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :fld_acceptance %><br />
+    <%= f.check_box :fld_acceptance %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_confirmation %><br />
+    <%= f.text_field :fld_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_confirmation_confirmation %><br />
+    <%= f.text_field :fld_confirmation_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_exclusion_in %><br />
+    <%= f.text_field :fld_exclusion_in %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_format_with %><br />
+    <%= f.text_field :fld_format_with %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_format_without %><br />
+    <%= f.text_field :fld_format_without %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_inclusion_in %><br />
+    <%= f.text_field :fld_inclusion_in %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_length_minimum %><br />
+    <%= f.text_field :fld_length_minimum %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_length_maximum %><br />
+    <%= f.text_field :fld_length_maximum %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_length_within %><br />
+    <%= f.text_field :fld_length_within %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_length_in %><br />
+    <%= f.text_field :fld_length_in %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_numericality %><br />
+    <%= f.text_field :fld_numericality %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_numericality_only_integer %><br />
+    <%= f.text_field :fld_numericality_only_integer %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_numericality_greater_than %><br />
+    <%= f.text_field :fld_numericality_greater_than %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_numericality_greater_than_or_equal_to %><br />
+    <%= f.text_field :fld_numericality_greater_than_or_equal_to %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_numericality_equal_to %><br />
+    <%= f.text_field :fld_numericality_equal_to %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_numericality_less_than %><br />
+    <%= f.text_field :fld_numericality_less_than %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_numericality_less_than_or_equal_to %><br />
+    <%= f.text_field :fld_numericality_less_than_or_equal_to %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_numericality_odd %><br />
+    <%= f.text_field :fld_numericality_odd %>
+  </div>
+  <div class="field">
+    <%= f.label :fld_numericality_even %><br />
+    <%= f.text_field :fld_numericality_even %>
+  </div>
+  <div class="field">
     <%= f.label :fld_presence %><br />
     <%= f.text_field :fld_presence %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
