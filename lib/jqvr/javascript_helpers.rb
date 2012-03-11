@@ -47,7 +47,7 @@ module    JavascriptHelpers
     private
 
     def rule_output(rule_and_param,validator)
-      "jQuery.('[name=\"#{tag_name}\"]').rules('add',{#{rule_and_param},messages:{#{rule_name validator}:'#{@message}'}});\n"
+      "jQuery('[name=\"#{tag_name}\"]').rules('add',{#{rule_and_param},messages:{#{rule_name validator}:'#{@message}'}});\n"
     end
 
     def rule_name(validator)
