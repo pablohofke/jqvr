@@ -9,12 +9,14 @@ module Jqvr
   
 module    JavascriptHelpers
   
-  
+    # TODO Refatorar o código, pode ser muiiito mais limpo
   
     # Adiciona a rule do validator
     # add_rule :presence, :name, "the message"
     def add_rule(kind,attribute,message,option=nil)
       # debugger if kind == :confirmation
+      # TODO hergh!!!
+      @message=message
       validators=Jqvr::MappedValidators.all
       validator = (validators.select do |v| 
                     if option
