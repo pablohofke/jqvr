@@ -13,8 +13,8 @@ module Jqvr
         v.attributes.each do |a|
           # debugger
           # TODO terminar mensagem
-          @method_name=a.to_s
-          rules << add_rule(v.kind, a, "the message")
+          # @method_name=a.to_s
+          rules << add_rule(v.kind, a, "the message", v.options)
         end
       end
       # output
