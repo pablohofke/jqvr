@@ -18,7 +18,7 @@ jQuery ->
       true
   )
   # inclusion
-  jQuery.validator.addMethod("inclusion", (value,element,params) ->
+  jQuery.validator.addMethod("inclusionIn", (value,element,params) ->
     if value isnt ""
       jQuery.inArray(value,params) isnt -1
     else
