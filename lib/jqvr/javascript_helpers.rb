@@ -74,7 +74,8 @@ module    JavascriptHelpers
       output=validator.rule
       if output.include?("%{attribute}")
         output.gsub! /%{attribute}/,attribute.to_s
-      elsif output.include?("%{model}")
+      end
+      if output.include?("%{model}")
         output.gsub! /%{model}/,@object_name
       end
       output
