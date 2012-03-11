@@ -13,6 +13,10 @@ gem "jquery-rails"
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
+group :assets do
+  gem 'coffee-rails'
+end
+
 # To use debugger
 gem 'ruby-debug19'
 
