@@ -11,12 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215224129) do
+ActiveRecord::Schema.define(:version => 20120311185429) do
 
   create_table "foos", :force => true do |t|
     t.string   "fld_presence"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "fld_acceptance"
+    t.string   "fld_confirmation"
+    t.string   "fld_exclusion_in"
+    t.string   "fld_format_with"
+    t.string   "fld_format_without"
+    t.string   "fld_inclusion_in"
+    t.string   "fld_length_minimum"
+    t.string   "fld_length_maximum"
+    t.string   "fld_length_within"
+    t.string   "fld_length_in"
+    t.string   "fld_numericality"
+    t.string   "fld_numericality_only_integer"
+    t.string   "fld_numericality_greater_than"
+    t.string   "fld_numericality_greater_than_or_equal_to"
+    t.string   "fld_numericality_equal_to"
+    t.string   "fld_numericality_less_than"
+    t.string   "fld_numericality_less_than_or_equal_to"
+    t.string   "fld_numericality_odd"
+    t.string   "fld_numericality_even"
   end
 
 end
