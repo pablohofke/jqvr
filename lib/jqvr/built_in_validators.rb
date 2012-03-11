@@ -12,6 +12,7 @@ module Jqvr
     MappedValidators.add :length, "maxlength:%{options[:maximum]}" 
     MappedValidators.add :length, "rangelength:[%{options[:minimum]},%{options[:maximum]}]", :within 
     MappedValidators.add :length, "rangelength:[%{options[:minimum]},%{options[:maximum]}]", :in 
+    # TODO, faltou length is
     MappedValidators.add :numericality, "numericality:true" 
     MappedValidators.add :numericality, "digits:true",:only_integer 
     MappedValidators.add :numericality, "numericalityGreaterThan:%{options[:greater_than]}"
