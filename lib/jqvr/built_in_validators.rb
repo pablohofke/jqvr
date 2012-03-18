@@ -3,7 +3,7 @@ module Jqvr
   module BuiltInValidators
     
     MappedValidators.add :acceptance, "required:true" 
-    MappedValidators.add :confirmation, "equalTo:'[name=\"%{model}[%{attribute}_confirmation]\"]'" 
+    MappedValidators.add :confirmation, "confirmation:true" 
     MappedValidators.add :exclusion, "exclusionIn:%{options[:in]}"
     MappedValidators.add :format, "formatWith:%{options[:with]}" 
     MappedValidators.add :format, "formatWithout:%{options[:without]}" 
