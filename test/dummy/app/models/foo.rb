@@ -4,8 +4,8 @@ class Foo < ActiveRecord::Base
   validates :fld_acceptance, :acceptance => true
   validates :fld_confirmation, :confirmation => true
   validates :fld_exclusion_in, :exclusion => {:in => %w(Alto Médio Baixo)}
-  validates :fld_format_with, :format => {:with => /\A[a-zA-Z]+\z/}
-  validates :fld_format_without, :format => {:without => /\A[a-zA-Z]+\z/}
+  validates :fld_format_with, :format => {:with => /[A-Z]/}
+  validates :fld_format_without, :format => {:without => /[A-Z]/}
   validates :fld_inclusion_in, :inclusion => {:in => %w(Alto Médio Baixo)}
   validates :fld_length_minimum, :length => {:minimum => 5}
   validates :fld_length_maximum, :length => {:maximum => 5}
