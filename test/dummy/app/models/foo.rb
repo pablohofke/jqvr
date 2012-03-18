@@ -2,7 +2,7 @@
 class Foo < ActiveRecord::Base
    
   validates :fld_acceptance, :acceptance => true
-  validates :fld_confirmation, :confirmation => true
+  validates :fld_to_confirm, :confirmation => true
   validates :fld_exclusion_in, :exclusion => {:in => %w(Alto Médio Baixo)}
   validates :fld_format_with, :format => {:with => /[A-Z]/}
   validates :fld_format_without, :format => {:without => /[A-Z]/}
