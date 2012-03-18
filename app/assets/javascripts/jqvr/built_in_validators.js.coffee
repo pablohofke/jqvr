@@ -1,4 +1,40 @@
 jQuery ->
+  # confirmation
+  jQuery.validator.addMethod("confirmation", (value,element,params) ->
+    fieldConfirmationNameSelector = getFieldNameSelector(element.name + '_confirmation')
+    fieldConfirmation=jQuery(fieldConfirmationNameSelector)[0]
+    
+    if fieldConfirmation.value isnt ""
+      value is fieldConfirmation.value
+    else
+      true
+  )
+  
+  jQuery('[name$="_confirmation"]').blur(->
+    fieldToConfirm=getFieldToConfirm(@)
+    isValid=true
+    
+    isValid = jQuery(fieldToConfirm).valid()
+    if not isValid
+      jQuery(fieldToConfirm).addClass('was_invalid')
+  )
+  
+  jQuery('[name$="_confirmation"]').keyup(->
+    fieldToConfirm= getFieldToConfirm(@)
+    
+    if jQuery(fieldToConfirm).hasClass('was_invalid')
+      jQuery(fieldToConfirm).valid()
+  )
+  
+  getFieldToConfirm= (fieldConfirmation) ->
+    fieldToConfirmName= fieldConfirmation.name.substring(0,(fieldConfirmation.name.length-13))
+    fieldToConfirmNameSelector=getFieldNameSelector(fieldToConfirmName)
+    
+    jQuery(fieldToConfirmNameSelector)
+    
+  getFieldNameSelector=(fieldToConfirmName) ->
+    '[name="' + fieldToConfirmName + '"]'
+  
   # exclusion
   jQuery.validator.addMethod("exclusionIn", (value,element,params) ->
     jQuery.inArray(value, params)==-1
