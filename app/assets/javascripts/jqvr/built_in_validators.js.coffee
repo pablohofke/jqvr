@@ -1,7 +1,8 @@
 jQuery ->
   # confirmation
   jQuery.validator.addMethod("confirmation", (value,element,params) ->
-    fieldConfirmationNameSelector = getFieldNameSelector(element.name + '_confirmation')
+    fieldConfirmationName=element.name.substring(0,(element.name.length-1)) + '_confirmation]'
+    fieldConfirmationNameSelector = getFieldNameSelector(fieldConfirmationName)
     fieldConfirmation=jQuery(fieldConfirmationNameSelector)[0]
     
     if fieldConfirmation.value isnt ""
@@ -10,7 +11,7 @@ jQuery ->
       true
   )
   
-  jQuery('[name$="_confirmation"]').blur(->
+  jQuery('[name$="_confirmation]"]').blur(->
     fieldToConfirm=getFieldToConfirm(@)
     isValid=true
     
@@ -19,7 +20,7 @@ jQuery ->
       jQuery(fieldToConfirm).addClass('was_invalid')
   )
   
-  jQuery('[name$="_confirmation"]').keyup(->
+  jQuery('[name$="_confirmation]"]').keyup(->
     fieldToConfirm= getFieldToConfirm(@)
     
     if jQuery(fieldToConfirm).hasClass('was_invalid')
@@ -27,7 +28,7 @@ jQuery ->
   )
   
   getFieldToConfirm= (fieldConfirmation) ->
-    fieldToConfirmName= fieldConfirmation.name.substring(0,(fieldConfirmation.name.length-13))
+    fieldToConfirmName= fieldConfirmation.name.substring(0,(fieldConfirmation.name.length-14)) + ']'
     fieldToConfirmNameSelector=getFieldNameSelector(fieldToConfirmName)
     
     jQuery(fieldToConfirmNameSelector)
