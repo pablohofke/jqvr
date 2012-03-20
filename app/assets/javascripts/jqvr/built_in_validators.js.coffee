@@ -14,17 +14,24 @@ jQuery ->
   jQuery('[name$="_confirmation]"]').blur(->
     fieldToConfirm=getFieldToConfirm(@)
     isValid=true
+    isOnfocusout=jQuery(this).closest('form').validate().settings.onfocusout
     
-    isValid = jQuery(fieldToConfirm).valid()
-    if not isValid
-      jQuery(fieldToConfirm).addClass('was_invalid')
+    if isOnfocusout
+      isValid = jQuery(fieldToConfirm).valid()
+      if not isValid
+        jQuery(fieldToConfirm).addClass('was_invalid')
   )
   
   jQuery('[name$="_confirmation]"]').keyup(->
     fieldToConfirm= getFieldToConfirm(@)
+    parentForm=jQuery(@).closest('form')
+    isOnkeyup=jQuery(parentForm).validate().settings.onkeyup
+    errorClass=jQuery(parentForm).validate().settings.errorClass
+    validClass=jQuery(parentForm).validate().settings.validClass
     
-    if jQuery(fieldToConfirm).hasClass('was_invalid')
-      jQuery(fieldToConfirm).valid()
+    if isOnkeyup
+      if jQuery(fieldToConfirm).hasClass('was_invalid') or jQuery(fieldToConfirm).hasClass(errorClass) or jQuery(fieldToConfirm).hasClass(validClass)
+        jQuery(fieldToConfirm).valid()
   )
   
   getFieldToConfirm= (fieldConfirmation) ->
