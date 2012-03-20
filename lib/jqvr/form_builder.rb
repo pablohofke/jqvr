@@ -21,7 +21,9 @@ module Jqvr
       # TODO o debug:true é temporário
       "<script>
           jQuery(function(){
-              jQuery('##{ActionController::RecordIdentifier.dom_id(@object, @object.new_record? ? :new : :edit)}').validate({debug: true});
+              jQuery('##{ActionController::RecordIdentifier.dom_id(@object, @object.new_record? ? :new : :edit)}').validate({
+                debug: true,
+                });
               #{rules}  
           });
       </script>".html_safe
