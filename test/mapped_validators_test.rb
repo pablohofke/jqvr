@@ -35,4 +35,20 @@ class MappedValidatorsTest < ActiveSupport::TestCase
     assert_equal :minimum, map.option
   end
   
+  test "add deve aceitar mais de uma option" do
+    MappedValidators.add :acceptance, "required:true", :allow_nil, :accept
+    map=MappedValidators.all.first
+    assert_equal :acceptance, map.kind
+    assert_equal "required:true", map.rule
+    assert_equal [:allow_nil,:accept], map.options
+  end
+  
+  test "add deve aceitar deve converter mais de uma option implictia em uma array" do
+    MappedValidators.add :length, "rangelength:[%{options[:minimum]},%{options[:maximum]}]"
+    map=MappedValidators.all.first
+    assert_equal :length, map.kind
+    assert_equal "rangelength:[%{options[:minimum]},%{options[:maximum]}]", map.rule
+    assert_equal [:minimum,:maximum], map.options
+  end
+  
 end
