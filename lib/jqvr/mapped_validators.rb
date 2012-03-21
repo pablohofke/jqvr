@@ -10,18 +10,21 @@ module Jqvr
     # MappedValidators.add :numericality, "digits:true",:only_integer
     # MappedValidators.add :numericality, "min:%{options[:greater_than_or_equal_to]}"
     # TODO refatorar option para virar option_key ou option_keys
-    def self.add(kind,rule,option=nil)
+    def self.add(kind,rule,options_keys=nil)
       @@all=[] if @@all.blank?
-      option=extract_rule_option rule unless option
-      vm=ValidatorMap.new kind, rule, option
+      options_keys=extract_rule_options_keys rule unless options_keys
+      vm=ValidatorMap.new kind, rule, options_keys
       @@all << vm
     end
     
     # Extrai a option quando passada dentro da rule
     # MappedValidators.add :numericality, "min:%{options[:greater_than_or_equal_to]}"
-    def self.extract_rule_option(rule)
-      if (option=rule.match(/options\[:(\w*)\]/))
-        option[1].to_sym
+    def self.extract_rule_options_keys(rule)
+      options_keys=rule.scan(/options\[:(\w*)\]/).flatten.map{|o| o.to_sym}
+      if options_keys.size == 1
+        options_keys.first
+      else
+        options_keys
       end
     end
     

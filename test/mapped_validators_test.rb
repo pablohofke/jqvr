@@ -24,7 +24,7 @@ class MappedValidatorsTest < ActiveSupport::TestCase
     map=MappedValidators.all.first
     assert_equal :numericality, map.kind
     assert_equal "digits:true", map.rule
-    assert_equal :only_integer, map.option 
+    assert_equal :only_integer, map.options_keys 
   end
   
   test "add deve converter as options que estão na rule para options explícitas" do
@@ -32,15 +32,15 @@ class MappedValidatorsTest < ActiveSupport::TestCase
     map=MappedValidators.all.first
     assert_equal :length, map.kind
     assert_equal "minlength:%{options[:minimum]}", map.rule
-    assert_equal :minimum, map.option
+    assert_equal :minimum, map.options_keys
   end
   
   test "add deve aceitar mais de uma option" do
-    MappedValidators.add :acceptance, "required:true", :allow_nil, :accept
+    MappedValidators.add :acceptance, "required:true", [:allow_nil, :accept]
     map=MappedValidators.all.first
     assert_equal :acceptance, map.kind
     assert_equal "required:true", map.rule
-    assert_equal [:allow_nil,:accept], map.options
+    assert_equal [:allow_nil,:accept], map.options_keys
   end
   
   test "add deve aceitar deve converter mais de uma option implictia em uma array" do
@@ -48,7 +48,7 @@ class MappedValidatorsTest < ActiveSupport::TestCase
     map=MappedValidators.all.first
     assert_equal :length, map.kind
     assert_equal "rangelength:[%{options[:minimum]},%{options[:maximum]}]", map.rule
-    assert_equal [:minimum,:maximum], map.options
+    assert_equal [:minimum,:maximum], map.options_keys
   end
   
 end
