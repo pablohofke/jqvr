@@ -21,12 +21,13 @@ module Jqvr
     # MappedValidators.add :numericality, "min:%{options[:greater_than_or_equal_to]}"
     def self.extract_rule_options_keys(rule)
       options_keys=rule.scan(/options\[:(\w*)\]/).flatten.map{|o| o.to_sym}
-      if options_keys.size == 1
-        options_keys.first
-      else
-        options_keys
+      if options_keys.any?
+        if options_keys.size == 1
+          options_keys.first
+        else
+          options_keys
+        end
       end
     end
-    
   end
 end
