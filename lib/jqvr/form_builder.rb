@@ -23,8 +23,8 @@ module Jqvr
           jQuery(function(){
               jQuery('##{ActionController::RecordIdentifier.dom_id(@object, @object.new_record? ? :new : :edit)}').validate({
                 debug: true,
-                onfocusout: false,
-                onkeyup: false,
+                //onfocusout: false,
+                //onkeyup: false,
                 });
               #{rules}  
           });

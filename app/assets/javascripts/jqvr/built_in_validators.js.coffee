@@ -72,28 +72,28 @@ jQuery ->
   # numericality
   jQuery.validator.addMethod("numericality", (value,element,params) ->
     if value isnt ""
-      Number(value.replace(',', '.'))!=NaN
+      not isNaN(value)
     else
       true
   )
   # numericality greater_than
   jQuery.validator.addMethod("numericalityGreaterThan", (value,element,params) ->
     if value isnt ""
-      value > param
+      value > params
     else
       true
   )
   # numericality :equal_to
   jQuery.validator.addMethod("numericalityEqualTo", (value,element,params) ->
     if value isnt ""
-      value is param
+      value is params
     else
       true
   )
   # numericality :less_than 
   jQuery.validator.addMethod("numericalityLessThan", (value,element,params) ->
     if value isnt ""
-      value < param
+      value < params
     else
       true
   )
