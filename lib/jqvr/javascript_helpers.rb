@@ -44,9 +44,13 @@ module    JavascriptHelpers
     def retrieve_mapped_validator(kind,option)
       validators=Jqvr::MappedValidators.all
       (validators.select do |v| 
+          # Rails.logger.debug "kind: #{v.kind}"
+          #           Rails.logger.debug "options_keys: #{v.options_keys}"
+          # debugger if kind == :exclusion && v.kind == :exclusion
           if option
+            # Rails.logger.debug "keys: #{option.keys}"
             if kind != :acceptance
-              v.kind == kind && v.options_keys == option.keys.first
+              v.kind == kind && v.options_keys == option.keys
             else
               v.kind == kind
             end
