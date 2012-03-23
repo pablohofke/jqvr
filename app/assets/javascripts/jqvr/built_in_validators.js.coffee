@@ -30,7 +30,8 @@ jQuery ->
     validClass=jQuery(parentForm).validate().settings.validClass
     
     if isOnkeyup
-      if jQuery(fieldToConfirm).hasClass('was_invalid') or jQuery(fieldToConfirm).hasClass(errorClass) or jQuery(fieldToConfirm).hasClass(validClass)
+      # if jQuery(fieldToConfirm).hasClass('was_invalid') or jQuery(fieldToConfirm).hasClass(errorClass) or jQuery(fieldToConfirm).hasClass(validClass)
+      if jQuery(fieldToConfirm).hasClass(errorClass)
         jQuery(fieldToConfirm).valid()
   )
   
