@@ -15,7 +15,7 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
   end
   
   def expected_rule(name,param="true")
-    "jQuery.('[name=\"foo[#{@attribute}]\"]').rules('add',{#{name}:#{param},messages:{#{name}:'#{@message}'}});\n"
+    "jQuery('[name=\"foo[#{@attribute}]\"]').rules('add',{#{name}:#{param},messages:{#{name}:'#{@message}'}});\n"
   end
   
   def rule_to_check(name,params=nil)
