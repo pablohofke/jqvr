@@ -50,7 +50,7 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
                   rule_to_check(:length,:maximum => 5))    
      # length within
      assert_equal(expected_rule("rangelength","[3,5]"),
-                  rule_to_check(:length,:within => 3..5))                  
+                  rule_to_check(:length,{:minimum => 3,:maximum => 5}))                  
      # length in
      assert_equal(expected_rule("rangelength","[3,5]"),
                   rule_to_check(:length,:in => 3..5))                  
