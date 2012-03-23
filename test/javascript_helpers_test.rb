@@ -28,7 +28,7 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     assert_equal(expected_rule("required"), 
                  rule_to_check(:acceptance))
     # confirmation
-    assert_equal(expected_rule("equalTo","#{@attribute}_confirmation"),
+    assert_equal(expected_rule("confirmation"),
                  rule_to_check(:confirmation))
     # exclusion
     assert_equal(expected_rule("exclusionIn","[\"Alto\", \"Médio\", \"Baixo\"]"),
