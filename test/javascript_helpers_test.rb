@@ -31,7 +31,7 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     assert_equal(expected_rule("confirmation"),
                  rule_to_check(:confirmation))
     # exclusion
-    assert_equal(expected_rule("exclusionIn","[\"Alto\", \"Médio\", \"Baixo\"]"),
+    assert_equal(expected_rule("exclusionIn","[\"Alto\",\"Médio\",\"Baixo\"]"),
                  rule_to_check(:exclusion, :in => ["Alto","Médio","Baixo"]))
     # format with
     assert_equal(expected_rule("formatWith","/[A-Z]/"),
@@ -40,7 +40,7 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     assert_equal(expected_rule("formatWithout","/[A-Z]/"),
                  rule_to_check(:format, :without => /[A-Z]/))
     # inclusion
-    assert_equal(expected_rule("inclusionIn","[\"Alto\", \"Médio\", \"Baixo\"]"),
+    assert_equal(expected_rule("inclusionIn","[\"Alto\",\"Médio\",\"Baixo\"]"),
                  rule_to_check(:inclusion, :in => ["Alto","Médio","Baixo"]))
     # length minimum
     assert_equal(expected_rule("minlength",3),
