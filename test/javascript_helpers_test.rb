@@ -73,11 +73,11 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
     assert_equal(expected_rule("max",5),
                  rule_to_check(:numericality, :less_than_or_equal_to => 5))    
     # numericality odd
-    assert_equal(expected_rule("numericalityOdd",5),
-                 rule_to_check(:numericality, :odd => 5))
+    assert_equal(expected_rule("numericalityOdd"),
+                 rule_to_check(:numericality,:odd => true))
     # numericality even
-    assert_equal(expected_rule("numericalityEven",5),
-                 rule_to_check(:numericality, :even => 5))
+    assert_equal(expected_rule("numericalityEven"),
+                 rule_to_check(:numericality,:even => true))
     # presence
     assert_equal(expected_rule("required"), 
                  rule_to_check(:presence))        
