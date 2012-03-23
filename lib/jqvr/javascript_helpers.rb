@@ -25,13 +25,13 @@ module    JavascriptHelpers
       if validator
         if validator.rule.match(/function/)
           if validator.options_keys
-            rule_output "#{rule_name(validator)}:#{sanitize_option option[validator.option]}", validator,attribute
+            rule_output "#{rule_name(validator)}:#{sanitize_option option[validator.options_keys]}", validator,attribute
           else
             rule_output "#{rule_name(validator)}:true", validator,attribute
           end
         else
           if validator.options_keys
-            rule_output "#{rule_name(validator)}:#{sanitize_option option[validator.option]}",validator,attribute
+            rule_output "#{rule_name(validator)}:#{sanitize_option option[validator.options_keys]}",validator,attribute
           else
             rule_output(sanitize_rule(validator, attribute),validator,attribute)
           end
@@ -46,7 +46,7 @@ module    JavascriptHelpers
       (validators.select do |v| 
           if option
             if kind != :acceptance
-              v.kind == kind && v.option == option.keys.first
+              v.kind == kind && v.options_keys == option.keys.first
             else
               v.kind == kind
             end
