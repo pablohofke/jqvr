@@ -24,13 +24,13 @@ module    JavascriptHelpers
       # TODO Dá para fazer esses ifs menos DRY?
       if validator
         if validator.rule.match(/function/)
-          if validator.option
+          if validator.options_keys
             rule_output "#{rule_name(validator)}:#{sanitize_option option[validator.option]}", validator,attribute
           else
             rule_output "#{rule_name(validator)}:true", validator,attribute
           end
         else
-          if validator.option
+          if validator.options_keys
             rule_output "#{rule_name(validator)}:#{sanitize_option option[validator.option]}",validator,attribute
           else
             rule_output(sanitize_rule(validator, attribute),validator,attribute)
