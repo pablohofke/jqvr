@@ -25,14 +25,14 @@ module    JavascriptHelpers
       if validator
         if validator.rule.match(/function/)
           if validator.options_keys
-            rule_output "#{rule_name(validator)}:#{sanitize_options option}", validator,attribute
+            rule_output "#{rule_name(validator)}:#{sanitize_option option}", validator,attribute
           else
             rule_output "#{rule_name(validator)}:true", validator,attribute
           end
         else
           if validator.options_keys.any?
             # debugger
-            rule_output "#{rule_name(validator)}:#{sanitize_options option}",validator,attribute
+            rule_output sanitize_rule(validator,attribute,option),validator,attribute
           else
             rule_output(sanitize_rule(validator, attribute),validator,attribute)
           end
@@ -75,7 +75,7 @@ module    JavascriptHelpers
      output
     end
     
-    def sanitize_rule(validator,attribute)
+    def sanitize_rule(validator,attribute,options=nil)
       output=validator.rule
       if output.include?("%{attribute}")
         output.gsub! /%{attribute}/,attribute.to_s
@@ -83,36 +83,54 @@ module    JavascriptHelpers
       if output.include?("%{model}")
         output.gsub! /%{model}/,@object_name
       end
-      output
-    end
-    
-    def sanitize_options(options)
-      # debugger
-      output=""
-      options.each_value do |v|
-        if v.is_a?(Regexp)
-          output << "/#{v}/"
-        elsif v.is_a?(Array)
-          v.map! do |av|
-            if av.is_a?(String)
-              "\"#{av}\""
-            else
-              av
-            end
-          end
-          output << "[#{v.join(",")}]"
-        else
-          output << v
+      if options
+        options.each do |k,v|
+         output.gsub! "%{options[:#{k}]}",sanitize_option(v) 
         end
       end
       output
+    end
+    
+    def sanitize_option(option)
+      # debugger if options == {:minimum => 3}
+      output=""
+      # option.each_value do |v|
+      #   if v.is_a?(Regexp)
+      #     output << "/#{v.source}/"
+      #   elsif v.is_a?(Array)
+        #   v.map! do |av|
+        #     if av.is_a?(String)
+        #       "\"#{av}\""
+        #     else
+        #       av
+        #     end
+        #   end
+        #   output << "[#{v.join(",")}]"
+        # else
+        #   output << v.to_s
+        # end
+      # end
+      # output
+      
+      
       # output=option
-      #       if option.is_a?(Regexp)
-      #         output="/#{option.source}/"
-      #       elsif option.is_a?(Range)
-      #         output="[#{option.first},#{option.last}]"
-      #       end
-      #       output
+      if option.is_a?(Regexp)
+        output="/#{option.source}/"
+      elsif option.is_a?(Range)
+        output="[#{option.first},#{option.last}]"
+      elsif option.is_a?(Array)
+        option.map! do |av|
+          if av.is_a?(String)
+            "\"#{av}\""
+          else
+            av.to_s
+          end
+        end
+        output="[#{option.join(",")}]"
+      else
+        output=option.to_s
+      end
+      output
     end
     
     # Totalmente copiado de actionpack/lib/action_view/helpers/form_helper.rb, pois lá o método é private
