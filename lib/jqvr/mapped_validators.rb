@@ -13,6 +13,9 @@ module Jqvr
     def self.add(kind,rule,options_keys=nil)
       @@all=[] if @@all.blank?
       options_keys=extract_rule_options_keys rule unless options_keys
+      if !options_keys.is_a?(Array)
+        options_keys=Array(options_keys)
+      end
       vm=ValidatorMap.new kind, rule, options_keys
       @@all << vm
     end
@@ -22,11 +25,11 @@ module Jqvr
     def self.extract_rule_options_keys(rule)
       options_keys=rule.scan(/options\[:(\w*)\]/).flatten.map{|o| o.to_sym}
       if options_keys.any?
-        if options_keys.size == 1
-          options_keys.first
-        else
+        # if options_keys.size == 1
+        #           options_keys.first
+        #         else
           options_keys
-        end
+        # end
       end
     end
   end
