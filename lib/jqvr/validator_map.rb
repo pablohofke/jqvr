@@ -7,7 +7,13 @@ module Jqvr
     def initialize(kind=nil, rule=nil, options_keys=nil)
       @kind=kind if kind
       @rule=rule if rule
-      @options_keys=options_keys if options_keys
+      if options_keys
+        if options_keys.is_a?(Array)
+          @options_keys=options_keys
+        else
+          @options_keys=Array(options_keys)
+        end
+      end
     end
     
   end
