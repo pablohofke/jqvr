@@ -23,6 +23,8 @@ module Jqvr
     MappedValidators.add :numericality, "numericalityEven:true",:even
     MappedValidators.add :presence,"required:true"
     # TODO Fazer depois, pois tem ajax
-    # map_validator :uniqueness
+    #:uniqueness
+    # TODO Vale a pena fazer validate associated?
+    MappedValidators.add :uniqueness,"uniqueness:true",:case_sensitive
   end
 end

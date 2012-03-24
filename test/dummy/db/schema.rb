@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120324103023) do
+ActiveRecord::Schema.define(:version => 20120324142029) do
 
   create_table "foos", :force => true do |t|
     t.string   "fld_presence"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20120324103023) do
     t.string   "fld_numericality_odd"
     t.string   "fld_numericality_even"
     t.string   "fld_length_is"
+    t.string   "fld_uniqueness"
   end
 
 end

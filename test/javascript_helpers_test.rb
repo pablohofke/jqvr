@@ -83,7 +83,10 @@ class JavascriptHelpersTest < ActiveSupport::TestCase
                  rule_to_check(:numericality,:even => true))
     # presence
     assert_equal(expected_rule("required"), 
-                 rule_to_check(:presence))        
+                 rule_to_check(:presence)) 
+     # uniqueness
+     assert_equal(expected_rule("uniqueness"), 
+                  rule_to_check(:uniqueness,:case_sensitive=>true))       
   end
 
   

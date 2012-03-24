@@ -22,5 +22,6 @@ class Foo < ActiveRecord::Base
   validates :fld_numericality_odd, :numericality => {:odd => true}
   validates :fld_numericality_even, :numericality => {:even => true}
   validates :fld_presence,  :presence => true
+  validates :fld_uniqueness, :uniqueness => true
   
 end
