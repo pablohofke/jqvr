@@ -11,6 +11,7 @@ class Foo < ActiveRecord::Base
   validates :fld_length_maximum, :length => {:maximum => 5}
   validates :fld_length_within, :length => {:within => 3..5}
   validates :fld_length_in, :length => {:in => 2..3}
+  validates :fld_length_is, :length => {:is => 5}
   validates :fld_numericality, :numericality => true
   validates :fld_numericality_only_integer, :numericality => {:only_integer => true}
   validates :fld_numericality_greater_than, :numericality => {:greater_than => 5}

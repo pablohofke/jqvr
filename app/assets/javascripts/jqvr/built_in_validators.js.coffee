@@ -69,6 +69,13 @@ jQuery ->
     else
       true
   )
+  # length is
+  jQuery.validator.addMethod("lengthIs",(value,element,params) ->
+    if value isnt ""
+      value.length is params
+    else
+      true
+  )
   # numericality
   jQuery.validator.addMethod("numericality", (value,element,params) ->
     if value isnt ""
