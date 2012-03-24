@@ -24,7 +24,7 @@ class MappedValidatorsTest < ActiveSupport::TestCase
     map=MappedValidators.all.first
     assert_equal :numericality, map.kind
     assert_equal "digits:true", map.rule
-    assert_equal :only_integer, map.options_keys 
+    assert_equal [:only_integer], map.options_keys 
   end
   
   test "add deve converter as options que estão na rule para options explícitas" do
@@ -32,7 +32,7 @@ class MappedValidatorsTest < ActiveSupport::TestCase
     map=MappedValidators.all.first
     assert_equal :length, map.kind
     assert_equal "minlength:%{options[:minimum]}", map.rule
-    assert_equal :minimum, map.options_keys
+    assert_equal [:minimum], map.options_keys
   end
   
   test "add deve aceitar mais de uma option" do
