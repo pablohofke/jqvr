@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  match 'jqvr/validations/uniqueness' => 'validations#uniqueness'
+  namespace :jqvr do
+    match 'validations/uniqueness' => 'validations#uniqueness'
+  end
 end

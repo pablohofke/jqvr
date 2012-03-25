@@ -4,6 +4,6 @@ require 'test_helper'
 
 class RoutesTest < ActionController::TestCase
   test "as rotas de validação devem ser reconhecidas" do
-    assert_recognizes({:controller => 'validations', :action => 'uniqueness'}, 'validations/uniqueness')    
+    assert_recognizes({:controller => 'jqvr/validations', :action => 'uniqueness'}, 'jqvr/validations/uniqueness')    
   end
 end

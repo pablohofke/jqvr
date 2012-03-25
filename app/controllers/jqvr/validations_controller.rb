@@ -1,7 +1,7 @@
-# module Jqvr
+module Jqvr
   class ValidationsController < ApplicationController
     def uniqueness
     
     end
   end
-# end
+end
