@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  match ':validations/:uniqueness' => 'validations#uniqueness', :as => :uniqueness
+  match 'jqvr/validations/uniqueness' => 'validations#uniqueness'
 end
