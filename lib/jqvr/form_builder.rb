@@ -22,12 +22,13 @@ module Jqvr
       "<script>
           jQuery(function(){
               
-              jQuery.validator.addMethod('unequeness',function(value,element){
+              jQuery.validator.addMethod('uniqueness',function(value,element){
                 if (value!='')
                   jQuery.ajax({
-                    url: 'http://0.0.0.0:3000/jqvr/validates/unequeness',
-                    dataType: 'json',
-                    data: {object: #{@object_name},element_name:element,element_value:value},
+                    url: 'http://0.0.0.0:3000/',
+                    data: 'data_item=data',
+                    //dataType: 'json',
+                    //data: {object: '#{@object_name}',element_name:element,element_value:value},
                   });
                 else
                   true
