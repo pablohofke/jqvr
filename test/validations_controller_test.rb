@@ -2,6 +2,12 @@
 
 require 'test_helper'
 
-class ValidationsControllerTest < ActiveSupport::TestCase
+class Jqvr::ValidationsControllerTest < ActionController::TestCase
   
+  # @controller = ValidationController
+  
+  test "uniqueness get" do
+    get :uniqueness
+    assert_response :success
+  end
 end
